@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', 'Roboto', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  display: flex;
+}
+
+.header {
+  width: 200px;
+  height: 100vh;
+
+
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 31px;
+  color: #000000;
+
+  div {
+    padding-left: 10px;
+  }
+
+  div:nth-child(2n-1) {
+    background: #F4F2EE;
+  }
+}
+
+.catalog {
+  display: flex;
+  justify-content: center;
+  overflow-x: visible;
+}

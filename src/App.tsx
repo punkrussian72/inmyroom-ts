@@ -1,10 +1,13 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import './App.scss';
+import Header from './components/Header';
+import Catalog from "./components/Catalog";
 
 function App() {
   return (
     <div className="App">
-      Hello World!
+      <Header />
+      <Catalog />
     </div>
   );
 }

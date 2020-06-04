@@ -40,7 +40,7 @@ body {
 }
 
 .catalog {
-  height: 817px;
+  height: 797px;
   margin-left: 200px;
   display: flex;
   justify-content: center;
@@ -51,8 +51,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 183px;
-  margin-right: 10px;
+  width: 210px;
   color: #000000;
   font-style: normal;
   font-weight: 600;
@@ -61,10 +60,11 @@ body {
 
   .name {
     line-height: 17px;
+    padding-left: 10px;
   }
 
-  .name, .price, .info {
-    padding-left: 5px;
+  .name, .price, .info, .rating {
+    padding-left: 10px;
   }
 
   span:nth-child(2n-1) {
@@ -77,10 +77,11 @@ body {
     border-radius: 10px;
     height: 160px;
     padding-top: 20px;
+    margin: 10px;
 
     img {
       mix-blend-mode: darken;
-      max-width: 100%;
+      max-width: 88%;
       height: auto;
     }
   }

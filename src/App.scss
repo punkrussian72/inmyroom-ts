@@ -14,11 +14,8 @@ body {
 }
 
 .header {
-  width: 200px;
-  height: 1000px;
-  position: fixed;
-  background: #FFF;
-  z-index: 1;
+  min-width: 15%;
+  margin-top: 160px;
 
   font-style: normal;
   font-weight: 600;
@@ -40,18 +37,19 @@ body {
 }
 
 .catalog {
-  height: 797px;
-  margin-left: 200px;
+  min-width: 85%;
   display: flex;
-  justify-content: center;
-  overflow-x: visible;
+  overflow-x: overlay;
 }
 
 .tumba-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 210px;
   width: 210px;
+  margin-bottom: 25px;
+
   color: #000000;
   font-style: normal;
   font-weight: 600;
@@ -84,5 +82,30 @@ body {
       max-width: 88%;
       height: auto;
     }
+  }
+
+  .heart {
+    background: #FFFFFF;
+    border: 2px solid #FF9F9F;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 51px;
+    height: 35px;
+    margin-top: 15px;
+  }
+
+  .buy {
+    background: #009900;
+    border: 2px solid #009900;
+    border-radius: 4px;
+
+    width: 117px;
+    height: 35px;
+    margin-left: 16px;
+
+    font-family: Proxima Nova, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
   }
 }

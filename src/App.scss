@@ -9,13 +9,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button:focus {
+  outline:0;
+}
+
 .App {
   display: flex;
 }
 
 .header {
-  min-width: 15%;
-  margin-top: 160px;
+  min-width: 193px;
+  margin-top: 176px;
 
   font-style: normal;
   font-weight: 600;
@@ -58,54 +62,102 @@ body {
 
   .name {
     line-height: 17px;
-    padding-left: 10px;
+    margin-bottom: 18px;
   }
 
   .name, .price, .info, .rating {
-    padding-left: 10px;
+    padding-left: 20px;
   }
 
-  span:nth-child(2n-1) {
-    background: #F4F2EE;
+  .rating {
+    font-family: Proxima Nova, sans-serif;
+    font-size: 15px;
+    display: flex;
+    align-items: baseline;
+
+    img {
+      display: block;
+      margin-right: 5px;
+    }
+
+    .rate {
+      margin-left: 10px;
+    }
+  }
+
+  .price {
+    font-family: Proxima Nova, sans-serif;
+    font-size: 18px;
+
+    .old-price {
+      font-size: 14px;
+      color: #948F88;
+      text-decoration: line-through;
+    }
+  }
+
+  .discount {
+    color: #CC0000;
+    display: flex;
+    justify-content: space-between;
+    width: 183px;
   }
 
   .photo {
     background: #F4F2EE;
     mix-blend-mode: normal;
     border-radius: 10px;
-    height: 160px;
-    padding-top: 20px;
-    margin: 10px;
+    height: 180px;
+    width: 183px;
+    margin: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     img {
       mix-blend-mode: darken;
-      max-width: 88%;
+      max-width: 80%;
+      margin: 0 auto;
       height: auto;
     }
   }
 
-  .heart {
-    background: #FFFFFF;
-    border: 2px solid #FF9F9F;
-    box-sizing: border-box;
-    border-radius: 4px;
-    width: 51px;
-    height: 35px;
-    margin-top: 15px;
+  .buttons-panel {
+    display: flex;
+    padding-top: 15px;
+    .heart {
+      background: #FFFFFF;
+      border: 2px solid #FF9F9F;
+      box-sizing: border-box;
+      border-radius: 4px;
+      width: 51px;
+      height: 35px;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+
+    .buy {
+      background: #009900;
+      border: 2px solid #009900;
+      border-radius: 4px;
+      cursor: pointer;
+
+      width: 117px;
+      height: 35px;
+      margin-left: 16px;
+
+      font-family: Proxima Nova, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: #FFFFFF;
+
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
   }
+}
 
-  .buy {
-    background: #009900;
-    border: 2px solid #009900;
-    border-radius: 4px;
-
-    width: 117px;
-    height: 35px;
-    margin-left: 16px;
-
-    font-family: Proxima Nova, sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    color: #FFFFFF;
-  }
+.tumba-item > span:nth-child(2n-1) {
+  background: #F4F2EE;
 }

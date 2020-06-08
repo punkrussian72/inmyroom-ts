@@ -49,10 +49,9 @@ button:focus {
 .tumba-item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   min-width: 210px;
   width: 210px;
-  margin-bottom: 25px;
+  padding-bottom: 25px;
 
   color: #000000;
   font-style: normal;
@@ -66,7 +65,7 @@ button:focus {
   }
 
   .name, .price, .info, .rating {
-    padding-left: 20px;
+    padding: 0 10px;
   }
 
   .rating {
@@ -105,11 +104,10 @@ button:focus {
 
   .photo {
     background: #F4F2EE;
-    mix-blend-mode: normal;
     border-radius: 10px;
     height: 180px;
     width: 183px;
-    margin: 10px 20px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -132,7 +130,7 @@ button:focus {
       border-radius: 4px;
       width: 51px;
       height: 35px;
-      margin-left: 20px;
+      margin-left: 10px;
       cursor: pointer;
     }
 
@@ -160,4 +158,12 @@ button:focus {
 
 .tumba-item > span:nth-child(2n-1) {
   background: #F4F2EE;
+  mix-blend-mode: color-burn;
+}
+
+.tumba-item:hover {
+  background: rgba(255, 188, 0, 0.1);
+  .photo {
+    background: none;
+  }
 }

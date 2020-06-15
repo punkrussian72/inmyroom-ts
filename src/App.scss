@@ -18,6 +18,7 @@ button:focus {
 }
 
 .header {
+  height: 368px;
   min-width: 193px;
   margin-top: 176px;
 
@@ -43,7 +44,7 @@ button:focus {
 .catalog {
   min-width: 85%;
   display: flex;
-  overflow-x: overlay;
+  overflow-x: auto;
 }
 
 .tumba-item {
@@ -51,7 +52,7 @@ button:focus {
   flex-direction: column;
   min-width: 210px;
   width: 210px;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
 
   color: #000000;
   font-style: normal;
@@ -165,5 +166,8 @@ button:focus {
   background: rgba(255, 188, 0, 0.1);
   .photo {
     background: none;
+  }
+  .heart {
+    background: rgba(255, 188, 0, 0.1);
   }
 }

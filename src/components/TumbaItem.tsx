@@ -4,7 +4,33 @@ import starImage from "../assets/Star.png";
 import heartImage from '../assets/heart.svg';
 import cartImage from '../assets/cart.png';
 
-const Tumba = () => {
+export interface ITumba {
+  name: string,
+  rating: string,
+  price: {
+    discount: boolean,
+    current_price: string,
+    old_price?: string
+  },
+  color: string,
+  material: string,
+  size: string,
+  mechanism: string,
+  seller: string
+}
+
+const Tumba: React.FC<ITumba> = (
+  {
+    name,
+    rating,
+    price,
+    color,
+    material,
+    size,
+    mechanism,
+    seller
+  }
+) => {
   const sales = ['Огого', 'Laska Family', 'Garda', 'DG Home'];
   const discount = Math.floor(Math.random() * 2) > 0;
   return (

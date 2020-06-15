@@ -3,17 +3,41 @@ import Tumba, {ITumba} from "./TumbaItem";
 
 const Catalog = () => {
   const [tumbas, setTumbas] = useState<ITumba[]>([]);
+  let throttleTimeout: any = null;
 
   useEffect(() => {
-    const newTumbas = [];
-    for (let i=0; i < 10; i++) {
-      newTumbas.push(generateTumbaItem());
-    }
-    setTumbas(newTumbas);
+    setTumbas(addTumbas([]));
   }, []);
 
+  const addTumbas = (curTumbas: ITumba[]) => {
+    for (let i=0; i < 10; i++) {
+      curTumbas.push(generateTumbaItem());
+    }
+    return curTumbas;
+  };
+
+  const handleScroll = (element: any) => {
+    // console.log('scrollWidth', element.scrollWidth);
+    // console.log('clientWidth', element.clientWidth);
+    // console.log('scrollLeft', element.scrollLeft);
+
+    // scrollWidth - width of the whole element
+    // clientWidth - width of the visible part
+    // scrollLeft - width of the scrolled part
+    if (element.clientWidth + element.scrollLeft === element.scrollWidth) {
+      setTumbas(addTumbas(tumbas.slice()));
+    }
+    throttleTimeout = null;
+  };
+
+  const throttleScroll = (event: any) => {
+    if (throttleTimeout === null) {
+      throttleTimeout = setTimeout(handleScroll.bind(null, event.target), 350)
+    }
+  };
+
   return (
-    <div className="catalog">
+    <div className="catalog" onScroll={throttleScroll}>
       {tumbas.map((tumba, index) => <Tumba key={index} {...tumba} />)}
     </div>
   )
@@ -25,7 +49,7 @@ const generateTumbaItem = ():ITumba => {
     name: 'Тумба прикроватная Rubus с двумя ящиками',
     rating: Number((Math.random() * 4 + 1)).toFixed(1),
     price: {
-      discount: !!Math.floor(Math.random() * 2),
+      discount: !!Math.round(Math.random()),
       current_price: '56 720 P',
       old_price: '67 736 Р'
     },

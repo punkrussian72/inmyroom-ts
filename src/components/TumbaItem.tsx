@@ -1,8 +1,9 @@
 import React from "react";
 import tumbaImage from "../assets/tumba.png";
-import starImage from "../assets/Star.png";
 import heartImage from '../assets/heart.svg';
 import cartImage from '../assets/cart.png';
+import Discount from './Discount';
+import Rating from "./Rating";
 
 export interface ITumba {
   name: string,
@@ -31,32 +32,21 @@ const Tumba: React.FC<ITumba> = (
     seller
   }
 ) => {
-  const sales = ['Огого', 'Laska Family', 'Garda', 'DG Home'];
-  const discount = Math.floor(Math.random() * 2) > 0;
+  const {discount, current_price, old_price} = price;
   return (
     <div className="tumba-item">
       <div className="photo">
         <img src={tumbaImage} alt="Tumba" className={'photo'}/>
       </div>
-      <div className="name">Тумба прикроватная Rubus с двумя ящиками</div>
-      <span className="rating">
-        <img src={starImage} alt="star" width='16'/>
-        <img src={starImage} alt="star" width='16'/>
-        <img src={starImage} alt="star" width='16'/>
-        <img src={starImage} alt="star" width='16'/>
-        <img src={starImage} alt="star" width='16'/>
-        <div className="rate">4.8</div>
-      </span>
-      <span className={`price ${discount ? 'discount' : ''}`}>
-        <span>56 720 P</span>
-        {discount && <span className={'old-price'}>67 736 Р</span>}
-      </span>
-      <span className="info">Черный</span>
-      <span className="info">Ткань</span>
-      <span className="info">ш. 349 х в. 234 х г. 323</span>
-      <span className="info">Французская раскладушка</span>
+      <div className="name">{name}</div>
+      <Rating rating={rating} />
+      <Discount discount={discount} current_price={current_price} old_price={old_price} />
+      <span className="info">{color}</span>
+      <span className="info">{material}</span>
+      <span className="info">{size}</span>
+      <span className="info">{mechanism}</span>
       {/* eslint-disable-next-line*/}
-      <span className="info"><a href="#">{sales[Math.floor(Math.random() * sales.length)]}</a></span>
+      <span className="info"><a href="#">{seller}</a></span>
       <div className="buttons-panel">
         <button className="heart"><img src={heartImage} alt="heart"/></button>
         <button className="buy"><img src={cartImage} alt="" width='20'/><p>Купить</p></button>

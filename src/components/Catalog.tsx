@@ -23,9 +23,9 @@ const generateTumbaItem = ():ITumba => {
   const sales = ['Огого', 'Laska Family', 'Garda', 'DG Home'];
   return {
     name: 'Тумба прикроватная Rubus с двумя ящиками',
-    rating: Number(Math.floor(Math.random() * 5)).toFixed(1),
+    rating: Number((Math.random() * 4 + 1)).toFixed(1),
     price: {
-      discount: Math.floor(Math.random() * 2) > 0,
+      discount: !!Math.floor(Math.random() * 2),
       current_price: '56 720 P',
       old_price: '67 736 Р'
     },

@@ -1,6 +1,6 @@
 ## Тестовое задание
 
-Необходимо сверстать [блок](https://www.figma.com/file/OgbAT9SVwMPSK5fQfphZgq/Untitled-(Copy)?node-id=0%3A1), который можно скроллить по горизонтали, с подгрузкой дополнительных элементов
+Необходимо сверстать [блок](https://www.figma.com/file/OgbAT9SVwMPSK5fQfphZgq/Untitled-(Copy)?node-id=0%3A1), который можно скроллить по горизонтали, с подгрузкой дополнительных элементов. [Демо](https://punkrussian72.github.io/inmyroom-ts/)
 
 ### Требования
 

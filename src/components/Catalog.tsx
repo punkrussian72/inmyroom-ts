@@ -1,44 +1,66 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef, useCallback} from "react";
 import Tumba, {ITumba} from "./TumbaItem";
+import {throttle} from 'lodash';
 
 const Catalog = () => {
   const [tumbas, setTumbas] = useState<ITumba[]>([]);
-  let throttleTimeout: any = null;
+  const catalogContainer = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState<number>(0);
 
   useEffect(() => {
-    setTumbas(addTumbas([]));
+    setTumbas(addManyTumbas([]));
   }, []);
 
-  const addTumbas = (curTumbas: ITumba[]) => {
+  const addTumbas = () => {
+    const newTumbas = [];
     for (let i=0; i < 10; i++) {
+      newTumbas.push(generateTumbaItem());
+    }
+    return newTumbas;
+  };
+
+  const addManyTumbas = (curTumbas: ITumba[]) => {
+    for (let i=0; i < 200; i++) {
       curTumbas.push(generateTumbaItem());
     }
     return curTumbas;
   };
 
-  const handleScroll = (element: any) => {
-    // console.log('scrollWidth', element.scrollWidth);
-    // console.log('clientWidth', element.clientWidth);
-    // console.log('scrollLeft', element.scrollLeft);
-
+  const handleScroll = useCallback((e: any) => {
     // scrollWidth - width of the whole element
     // clientWidth - width of the visible part
     // scrollLeft - width of the scrolled part
-    if (element.clientWidth + element.scrollLeft === element.scrollWidth) {
-      setTumbas(addTumbas(tumbas.slice()));
-    }
-    throttleTimeout = null;
-  };
 
-  const throttleScroll = (event: any) => {
-    if (throttleTimeout === null) {
-      throttleTimeout = setTimeout(handleScroll.bind(null, event.target), 350)
+    const {scrollWidth, clientWidth, scrollLeft} = e.target;
+    // console.log('clientWidth', clientWidth);
+    // console.log('scrollLeft', scrollLeft);
+    // console.log('scrollWidth', scrollWidth);
+    setScrolled(scrollLeft);
+    if (clientWidth + scrollLeft === scrollWidth) {
+      setTumbas(tumbas => [...tumbas, ...addTumbas()]);
     }
-  };
+  }, []);
+
+
+  useEffect(() => {
+    const wrapped = throttle(handleScroll, 350);
+    if (catalogContainer && catalogContainer.current) {
+      catalogContainer.current.addEventListener('scroll', wrapped)
+    }
+    return () => {
+      catalogContainer?.current?.removeEventListener('scroll', wrapped)
+    }
+  }, [tumbas, handleScroll]);
+
+  // console.log('tumbas', tumbas);
 
   return (
-    <div className="catalog" onScroll={throttleScroll}>
-      {tumbas.map((tumba, index) => <Tumba key={index} {...tumba} />)}
+    <div className="catalog" ref={catalogContainer}>
+      {tumbas.map((tumba, index) => {
+        if (index * 210 - scrolled >=-210 && index * 210 - scrolled < 1500) {
+          return (<Tumba key={index} {...tumba} />)
+        } else return (<div key={index} className="tumba-item" />)
+      })}
     </div>
   )
 };

@@ -5,10 +5,9 @@ import {throttle} from 'lodash';
 const Catalog = () => {
   const [tumbas, setTumbas] = useState<ITumba[]>([]);
   const catalogContainer = useRef<HTMLDivElement>(null);
-  const [scrolled, setScrolled] = useState<number>(0);
 
   useEffect(() => {
-    setTumbas(addManyTumbas([]));
+    setTumbas(addTumbas());
   }, []);
 
   const addTumbas = () => {
@@ -19,23 +18,12 @@ const Catalog = () => {
     return newTumbas;
   };
 
-  const addManyTumbas = (curTumbas: ITumba[]) => {
-    for (let i=0; i < 200; i++) {
-      curTumbas.push(generateTumbaItem());
-    }
-    return curTumbas;
-  };
-
   const handleScroll = useCallback((e: any) => {
     // scrollWidth - width of the whole element
     // clientWidth - width of the visible part
     // scrollLeft - width of the scrolled part
 
     const {scrollWidth, clientWidth, scrollLeft} = e.target;
-    // console.log('clientWidth', clientWidth);
-    // console.log('scrollLeft', scrollLeft);
-    // console.log('scrollWidth', scrollWidth);
-    setScrolled(scrollLeft);
     if (clientWidth + scrollLeft === scrollWidth) {
       setTumbas(tumbas => [...tumbas, ...addTumbas()]);
     }
@@ -52,14 +40,10 @@ const Catalog = () => {
     }
   }, [tumbas, handleScroll]);
 
-  // console.log('tumbas', tumbas);
-
   return (
     <div className="catalog" ref={catalogContainer}>
       {tumbas.map((tumba, index) => {
-        if (index * 210 - scrolled >=-210 && index * 210 - scrolled < 1500) {
           return (<Tumba key={index} {...tumba} />)
-        } else return (<div key={index} className="tumba-item" />)
       })}
     </div>
   )
